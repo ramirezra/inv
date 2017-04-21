@@ -1,0 +1,14 @@
+CREATE TABLE rma_header (
+   ID INT PRIMARY KEY     NOT NULL,
+   LOC            CHAR(2) NOT NULL,
+   INVOICE_NO     TEXT NOT NULL,
+   CUST_NO        TEXT    NOT NULL,
+   REASON         INT NOT NULL,
+   RANK           INT     NOT NULL,
+   RETURN_DATE    DATE DEFAULT '01-01-1900',
+   RESTOCK_FEE    INT NOT NULL
+
+   
+);
+
+INSERT INTO rma_header
