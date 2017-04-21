@@ -8,6 +8,9 @@
 </head>
 <body>
   <h1>CAM RPC Lead Management</h1>
-
+  {{ range .}}
+    {{ .ID}}
+    {{ .Status}}
+  {{ end}}
 </body>
 </html>
