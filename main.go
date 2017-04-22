@@ -2,10 +2,12 @@ package main
 
 import (
 	"encoding/csv"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 // Lead exported
@@ -14,7 +16,7 @@ type Lead struct {
 	Status  string
 	Contact string
 	Sales   string
-	Value   string
+	Value   float64
 }
 
 var dbLeads = map[int]Lead{}
@@ -51,17 +53,15 @@ func main() {
 
 	var leads []Lead
 
-	for _, item := range record {
-		// ID, _ := strconv.ParseInt(item[1], 1, 1)
-		// Status, _ := item[]
+	for i, item := range record {
+		if i == 0 {
+			continue
+		}
 		// open, _ := strconv.ParseFloat(item[1], 64)
-		// high, _ := strconv.ParseFloat(record[2], 64)
-		// low, _ := strconv.ParseFloat(record[3], 64)
-		// close, _ := strconv.ParseFloat(record[4], 64)
-		// volume, _ := strconv.ParseFloat(record[5], 64)
-
-		lead := Lead{ID: item[0], Status: item[1]}
+		value, _ := strconv.ParseFloat(item[4], 64)
+		lead := Lead{ID: item[0], Status: item[1], Contact: item[2], Sales: item[3], Value: value}
 		leads = append(leads, lead)
+		fmt.Println(leads)
 	}
 
 	error := tpl.Execute(os.Stdout, leads)
@@ -71,7 +71,10 @@ func main() {
 	http.HandleFunc("/status", func(w http.ResponseWriter, r *http.Request) {
 		tpl.ExecuteTemplate(w, "index.gohtml", leads)
 	})
+
 	http.HandleFunc("/", index)
+	http.Handle("/css/", http.StripPrefix("/css", http.FileServer(http.Dir("./css"))))
+
 	http.ListenAndServe(":8080", nil)
 
 }

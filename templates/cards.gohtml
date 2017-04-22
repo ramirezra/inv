@@ -1,30 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Inventory</title>
-  <style media="screen">
-    .Proposal {
-      color: blue;
-    }
-
-    .Negotiation {
-      background-color: purple;
-    }
-  </style>
-</head>
-<body>
-  <h1>CAM RPC Lead Management</h1>
-  {{ range .}}
-    <div class="lead-status">
-      <section class="{{ .Status}}">
-          <p>{{ .ID}}</p>
-          <p>{{ .Status}}</p>
+{{ define "card"}}
+    <section class="cards">
+      <section class="lead container">
+        <h3>Leads</h3>
+        {{range . }}
+          {{if eq .Status "Lead"}}
+          <div class="card holder">
+              <p>{{.ID}}</p>
+              <p>{{.Status}}</p>
+              <h4><b>{{.Contact}}</b></h4>
+              <p>{{.Sales}}</p>
+              <p>{{.Value}}</p>
+          </div>
+          {{end }}
+        {{end }}
       </section>
 
-    </div>
-  {{ end}}
-</body>
-</html>
+      <section class="prospect container">
+        <h3>Proposals</h3>
+        {{range . }}
+          {{if eq .Status "Proposal"}}
+          <div class="card holder">
+              <p>{{.ID}}</p>
+              <p>{{.Status}}</p>
+              <h4><b>{{.Contact}}</b></h4>
+              <p>{{.Sales}}</p>
+              <p>{{.Value}}</p>
+          </div>
+          {{end }}
+        {{end }}
+      </section>
+
+      <section class="negotiation container">
+        <h3>Negotiations</h3>
+        {{range . }}
+          {{if eq .Status "Negotiation"}}
+          <div class="card holder">
+              <p>{{.ID}}</p>
+              <p>{{.Status}}</p>
+              <h4><b>{{.Contact}}</b></h4>
+              <p>{{.Sales}}</p>
+              <p>{{.Value}}</p>
+          </div>
+          {{end }}
+        {{end }}
+      </section>
+
+      <section class="won container">
+        <h3>Deals Won</h3>
+      </section>
+
+      <section class="lost container">
+        <h3>Deals Lost</h3>
+      </section>
+
+{{end}}
