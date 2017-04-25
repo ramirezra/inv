@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Books.gohtml</title>
+  </head>
+  <body>
+    {{ range .}}
+    <p>
+      <a href="/books/show?isbn={{.Isbn}}">{{.Isbn}}</a> - {{.Title}} - {{.Author}} - {{.Price}}
+      <a href="/books/update?isbn={{.Isbn}}"> Update </a>
+      <a href="/books/delete/process?isbn={{.Isbn}}"> Delete </a>
+    </p>
+    {{end}}
+  </body>
+</html>

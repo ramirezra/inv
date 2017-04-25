@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Create.gohtml</title>
+  </head>
+  <body>
+    <h1>Create a New Book!</h1>
+    <form action="/books/create/process" method="post">
+      <input type="text" name="isbn" placeholder="isbn" required autofocus>
+      <input type="text" name="title" placeholder="title" required>
+      <input type="text" name="author" placeholder="author" required>
+      <input type="text" name="price" placeholder="price" required>
+      <input type="submit">
+    </form>
+  </body>
+</html>
