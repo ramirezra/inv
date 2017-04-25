@@ -81,7 +81,6 @@ func PutBook(r *http.Request) (Book, error) {
 	_, err = config.DB.Exec("INSERT INTO books (isbn,title,author,price) VALUES ($1,$2,$3,$4)", bk.Isbn, bk.Title, bk.Author, bk.Price)
 	if err != nil {
 		return bk, errors.New("500. Internal Server Error" + err.Error())
-
 	}
 	return bk, nil
 }
