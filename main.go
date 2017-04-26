@@ -17,5 +17,6 @@ func main() {
 	http.HandleFunc("/update/process", logic.UpdateProcess)
 	http.HandleFunc("/delete/process", logic.DeleteProcess)
 
+	http.Handle("/views/css/", http.StripPrefix("/views/css", http.FileServer(http.Dir("./views/css"))))
 	http.ListenAndServe(":8080", nil)
 }

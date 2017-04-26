@@ -49,7 +49,7 @@ func Tables(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(500), 500)
 		return
 	}
-	config.Views.ExecuteTemplate(w, "cards.gohtml", leads)
+	config.Views.ExecuteTemplate(w, "table.gohtml", leads)
 }
 
 // CreateForm exported

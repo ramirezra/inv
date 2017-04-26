@@ -19,7 +19,7 @@ type Lead struct {
 
 // AllLeads exported - Read (all) part of CRUD
 func AllLeads() ([]Lead, error) {
-	rows, err := config.DB.Query("SELECT * FROM books")
+	rows, err := config.DB.Query("SELECT * FROM leads")
 	if err != nil {
 		return nil, err
 	}
