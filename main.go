@@ -3,14 +3,19 @@ package main
 import (
 	"net/http"
 
+	_ "github.com/lib/pq"
 	"github.com/ramirezra/inv/logic"
 )
 
 func main() {
-	http.Handle("/", logic.Index)
-	http.Handle("/cards", logic.Cards)
-	http.Handle("/tables", logic.Tables)
+	http.HandleFunc("/", logic.Index)
+	http.HandleFunc("/cards", logic.Cards)
+	http.HandleFunc("/tables", logic.Tables)
+	http.HandleFunc("/create", logic.CreateForm)
+	http.HandleFunc("/create/process", logic.CreateProcess)
+	http.HandleFunc("/update", logic.UpdateForm)
+	http.HandleFunc("/update/process", logic.UpdateProcess)
+	http.HandleFunc("/delete/process", logic.DeleteProcess)
 
 	http.ListenAndServe(":8080", nil)
-
 }
