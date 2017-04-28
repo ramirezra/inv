@@ -48,7 +48,7 @@ func OneLead(r *http.Request) (Lead, error) {
 		return lead, errors.New("400. Bad Request")
 	}
 
-	row := config.DB.QueryRow("SELECT * FROM leads WHERE id =$1", id)
+	row := config.DB.QueryRow("SELECT * FROM leads WHERE id = $1", id)
 	err := row.Scan(&lead.ID, &lead.Status, &lead.Contact, &lead.Sales, &lead.Value)
 	if err != nil {
 		return lead, err
@@ -122,7 +122,7 @@ func DeleteLead(r *http.Request) error {
 	}
 
 	// delete lead
-	_, err := config.DB.Exec("DELETE FROM leads WHERE id=$1;", id)
+	_, err := config.DB.Exec("DELETE FROM leads WHERE id=$1", id)
 	if err != nil {
 		return errors.New("500. Internal Server Error")
 	}

@@ -2,6 +2,7 @@ package logic
 
 import (
 	"database/sql"
+	"fmt"
 	"net/http"
 
 	"github.com/ramirezra/inv/config"
@@ -19,37 +20,55 @@ func Index(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(500), 500)
 		return
 	}
-	config.Views.ExecuteTemplate(w, "index.gohtml", leads)
+	config.Views.ExecuteTemplate(w, "leads.gohtml", leads)
 }
 
-// Cards exported
-func Cards(w http.ResponseWriter, r *http.Request) {
+//
+// // Cards exported
+// func Cards(w http.ResponseWriter, r *http.Request) {
+// 	if r.Method != "GET" {
+// 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+// 		return
+// 	}
+//
+// 	leads, err := AllLeads()
+// 	if err != nil {
+// 		http.Error(w, http.StatusText(500), 500)
+// 		return
+// 	}
+// 	config.Views.ExecuteTemplate(w, "cards.gohtml", leads)
+// }
+//
+// // Tables exported
+// func Tables(w http.ResponseWriter, r *http.Request) {
+// 	if r.Method != "GET" {
+// 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+// 		return
+// 	}
+//
+// 	leads, err := AllLeads()
+// 	if err != nil {
+// 		http.Error(w, http.StatusText(500), 500)
+// 		return
+// 	}
+// 	config.Views.ExecuteTemplate(w, "table.gohtml", leads)
+// }
+
+// Show exported
+func Show(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
 		return
 	}
-
-	leads, err := AllLeads()
-	if err != nil {
-		http.Error(w, http.StatusText(500), 500)
+	lead, err := OneLead(r)
+	switch {
+	case err == sql.ErrNoRows:
+		http.NotFound(w, r)
 		return
+	case err != nil:
+		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
 	}
-	config.Views.ExecuteTemplate(w, "cards.gohtml", leads)
-}
-
-// Tables exported
-func Tables(w http.ResponseWriter, r *http.Request) {
-	if r.Method != "GET" {
-		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
-		return
-	}
-
-	leads, err := AllLeads()
-	if err != nil {
-		http.Error(w, http.StatusText(500), 500)
-		return
-	}
-	config.Views.ExecuteTemplate(w, "table.gohtml", leads)
+	config.Views.ExecuteTemplate(w, "show.gohtml", lead)
 }
 
 // CreateForm exported
@@ -85,7 +104,7 @@ func UpdateForm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	row := config.DB.QueryRow("SELECT * FROM leads WHERE id=$1", id)
+	row := config.DB.QueryRow("SELECT * FROM leads WHERE id=$1;", id)
 
 	lead := Lead{}
 	err := row.Scan(&lead.ID, &lead.Status, &lead.Contact, &lead.Sales, &lead.Value)
@@ -96,6 +115,7 @@ func UpdateForm(w http.ResponseWriter, r *http.Request) {
 	case err != nil:
 		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
 	}
+	fmt.Println(lead)
 	config.Views.ExecuteTemplate(w, "update.gohtml", lead)
 }
 
@@ -123,5 +143,5 @@ func DeleteProcess(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, http.StatusText(400), http.StatusBadRequest)
 	}
-	http.Redirect(w, r, "/index", http.StatusSeeOther)
+	http.Redirect(w, r, "/leads", http.StatusSeeOther)
 }

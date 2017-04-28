@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Leads.gohtml</title>
+    <link rel="stylesheet" href="views/css/main.css">
+  </head>
+  <body>
+    {{ range .}}
+    <p>
+      <a href="/leads/show?id={{.ID}}">{{.ID}}</a> - {{.Status}} - {{.Contact}} - {{.Sales}} - {{.Value}}
+      <a href="/leads/update?id={{.ID}}"> Update </a>
+      <a href="/leads/delete/process?id={{.ID}}"> Delete </a>
+    </p>
+    {{end}}
+  </body>
+</html>
