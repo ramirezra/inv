@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Create Lead</title>
+    <link rel="stylesheet" href="views/css/ramirez-reset.css">
+    <link rel="stylesheet" href="views/css/main.css">
+
   </head>
   <body>
     <h1>Create a Lead!</h1>
-    <form action="/create/process" method="post">
+    <form action="/leads/create/process" method="post">
       <input type="text" name="id" placeholder="id" required autofocus>
       <input type="text" name="status" placeholder="status" required>
       <input type="text" name="contact" placeholder="contact" required>

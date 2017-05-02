@@ -1,0 +1,11 @@
+header nav {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1rem;
+  justify-content: space-between;
+  width: 80%;
+}
+
+aside img{
+  display: block;
+}

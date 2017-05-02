@@ -2,6 +2,7 @@ package logic
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -61,7 +62,7 @@ func CreateLead(r *http.Request) (Lead, error) {
 	// get form values
 	lead := Lead{}
 	lead.ID = r.FormValue("id")
-	lead.Status = r.FormValue("title")
+	lead.Status = r.FormValue("status")
 	lead.Contact = r.FormValue("contact")
 	lead.Sales = r.FormValue("sales")
 	v := r.FormValue("value")
@@ -90,24 +91,26 @@ func UpdateLead(r *http.Request) (Lead, error) {
 	// get form values
 	lead := Lead{}
 	lead.ID = r.FormValue("id")
-	lead.Status = r.FormValue("title")
+	lead.Status = r.FormValue("status")
 	lead.Contact = r.FormValue("contact")
 	lead.Sales = r.FormValue("sales")
 	v := r.FormValue("value")
 
 	// validate form values
 	if lead.ID == "" || lead.Status == "" || lead.Contact == "" || lead.Sales == "" || v == "" {
-		return lead, errors.New("400. Bad Request")
+		fmt.Println("Bad Request - Validation")
+		return lead, errors.New("400. Bad Request - Validation")
 	}
 	// convert form values
 	float, err := strconv.ParseFloat(v, 64)
 	if err != nil {
-		return lead, errors.New("400. Bad Request")
+		fmt.Println("Bad Request - Conversion)", err)
+		return lead, errors.New("400. Bad Request - Conversion")
 	}
-	lead.Value = float
+	lead.Value = float64(float)
 
 	// Update values
-	_, err = config.DB.Exec("UPDATE leads SET id=$1, status=$2, contact=$3, sales=$4, value=$5", lead.ID, lead.Status, lead.Contact, lead.Sales, lead.Value)
+	_, err = config.DB.Exec("UPDATE leads SET status=$2, contact=$3, sales=$4, value=$5 WHERE id=$1", lead.ID, lead.Status, lead.Contact, lead.Sales, lead.Value)
 	if err != nil {
 		return lead, err
 	}

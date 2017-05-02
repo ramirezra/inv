@@ -115,7 +115,6 @@ func UpdateForm(w http.ResponseWriter, r *http.Request) {
 	case err != nil:
 		http.Error(w, http.StatusText(500), http.StatusInternalServerError)
 	}
-	fmt.Println(lead)
 	config.Views.ExecuteTemplate(w, "update.gohtml", lead)
 }
 
@@ -127,6 +126,7 @@ func UpdateProcess(w http.ResponseWriter, r *http.Request) {
 	}
 	lead, err := UpdateLead(r)
 	if err != nil {
+		fmt.Println(lead, err)
 		http.Error(w, http.StatusText(406), http.StatusBadRequest)
 	}
 	// confirm update

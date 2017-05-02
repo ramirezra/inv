@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Update.gohtml</title>
+    <link rel="stylesheet" href="views/css/ramirez-reset.css">
+    <link rel="stylesheet" href="views/css/main.css">
+
   </head>
   <body>
     <h1>Updated Lead</h1>
-    <p><a href="/show?id={{.ID}}">{{.ID}} - {{.Status}} - {{.Contact}} - {{.Sales}} - {{.Value}}</a></p>
-    <p><a href="/">All Books</a></p>
+    <p><a href="/leads/show?id={{.ID}}">{{.ID}} - {{.Status}} - {{.Contact}} - {{.Sales}} - {{.Value}}</a></p>
+    <p><a href="/leads/">All Books</a></p>
   </body>
 </html>

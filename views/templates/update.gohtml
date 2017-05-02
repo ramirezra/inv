@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>Update.gohtml</title>
+    <link rel="stylesheet" href="views/css/ramirez-reset.css">
+    <link rel="stylesheet" href="views/css/main.css">
+
   </head>
   <body>
     <h1>Update the Lead!</h1>
-    <form action="/update/process" method="post">
+    <form action="/leads/update/process" method="post">
       <input type="text" name="id" placeholder="id" required autofocus value="{{.ID}}">
       <input type="text" name="status" placeholder="status" required value="{{.Status}}">
       <input type="text" name="contact" placeholder="contact" required value="{{.Contact}}">

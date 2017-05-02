@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Leads.gohtml</title>
     <link rel="stylesheet" href="views/css/main.css">
+    <link rel="stylesheet" href="views/css/ramirez-reset.css">
   </head>
   <body>
     {{ range .}}
@@ -13,5 +14,7 @@
       <a href="/leads/delete/process?id={{.ID}}"> Delete </a>
     </p>
     {{end}}
+
+    <a href="/leads/create">Create New Lead</a>
   </body>
 </html>
