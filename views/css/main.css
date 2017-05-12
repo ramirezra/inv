@@ -119,11 +119,18 @@ tr:nth-child(2n+1){
 }
 
 .button  {
-  background-color: turquoise;
-  color: white;
+
   padding: 0.5rem;
-  margin: 1rem 0;
+  margin: 1rem 1rem;
   cursor: pointer;
+  background-color: #3adb76;
+  color: #0a0a0a;
+  border: 0;
+}
+
+.button:hover, .button:focus {
+  background-color: #22bb5b;
+  color: #0a0a0a;
 }
 
 form {
@@ -132,7 +139,11 @@ form {
 }
 
 input{
-  border: 1px solid #cacaca;
+    background-color: #d7ecfa;
+    color: #0a0a0a;
+    border: 0.25px solid rgba(10, 10, 10, 0.25);
+    margin: 0 0 1rem 0;
+    padding: 1rem;
 }
 /*
 .input-group-label, input {
