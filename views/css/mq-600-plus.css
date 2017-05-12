@@ -1,0 +1,40 @@
+header nav {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+main {
+  font-size: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  border: 2px solid blue;
+  width: 100%;
+}
+
+main nav{
+  width: 20%;
+}
+
+nav ul {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  width: 100%;
+  border: 2px solid hotpink;
+}
+
+
+.form-group{
+  width: 80%;
+  border: 2px solid lime;
+}
+aside img{
+  display: block;
+}
+
+form {
+  flex-flow: column  wrap;
+}

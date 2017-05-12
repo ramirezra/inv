@@ -85,6 +85,7 @@ func CreateProcess(w http.ResponseWriter, r *http.Request) {
 
 	lead, err := CreateLead(r)
 	if err != nil {
+		fmt.Println(err)
 		http.Error(w, http.StatusText(406), http.StatusNotAcceptable)
 	}
 
@@ -127,6 +128,7 @@ func UpdateProcess(w http.ResponseWriter, r *http.Request) {
 	}
 	lead, err := UpdateLead(r)
 	if err != nil {
+		fmt.Println(err)
 		http.Error(w, http.StatusText(406), http.StatusBadRequest)
 	}
 	// confirm update
