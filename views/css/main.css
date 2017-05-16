@@ -1,3 +1,68 @@
+
+body{
+  width: 75%;
+  border: 10px solid silver;
+  margin: 0 auto;
+}
+
+/* header and logo */
+body header {
+  autodisplay: flex;
+  justify-content: flex-start;;
+  flex-flow: column nowrap;
+  align-items: flex-start;;
+  width: 100%
+}
+
+header div{
+  color: #001e79;
+  width: 100%
+}
+
+.logo {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  border: 2px solid hotpink;
+}
+
+.logo-CAM{
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20vw;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column nowrap;
+
+}
+.logo-top {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.logo-bottom{
+
+}
+
+
+
+
+.logo-ELEC{
+  font-family: 'Raleway', sans-serif;
+  width: 100%;
+  font-size: 20vw;
+  text-transform: uppercase;
+  border-top: 1px solid #001e79;
+  border-bottom: 1px solid #001e79;
+}
+
+
+
+
 main {
   display: flex;
   flex-flow: column nowrap;
