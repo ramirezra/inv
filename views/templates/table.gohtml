@@ -10,7 +10,8 @@
   </thead>
   <tbody>
     {{  range . }}
-      <tr><td>{{.ID}} </td><td> {{.Status}} </td><td> {{.Contact}} </td><td> {{.Sales}} </td><td> {{.Value}} </td></tr>
+      <tr><td>{{.ID}} </td><td> {{.Status}} </td><td> {{.Contact}} </td><td> {{.Sales}} </td><td> {{.Value}} </td><td><a class="button" href="/leads/update?id={{.ID}}"> Update </a></td><td><a href="/leads/delete/process?id={{.ID}}"> Delete </a></td>
+      </tr>
     {{end }}
   </tbody>
 </table>

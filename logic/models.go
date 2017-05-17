@@ -98,20 +98,30 @@ func UpdateLead(r *http.Request) (Lead, error) {
 
 	// validate form values
 	if lead.ID == "" || lead.Status == "" || lead.Contact == "" || lead.Sales == "" || v == "" {
+<<<<<<< HEAD
 		fmt.Println("Bad Request - Validation")
 		return lead, errors.New("400. Bad Request - Validation")
+=======
+		return lead, errors.New("400. Bad Request-Empty Form")
+>>>>>>> b4a0de90226c2955940f9d4c486597621d90bc5a
 	}
 	// convert form values
 	float, err := strconv.ParseFloat(v, 64)
 	if err != nil {
+<<<<<<< HEAD
 		fmt.Println("Bad Request - Conversion)", err)
 		return lead, errors.New("400. Bad Request - Conversion")
+=======
+		fmt.Println(err)
+		return lead, errors.New("400. Bad Request-Parsing Float")
+>>>>>>> b4a0de90226c2955940f9d4c486597621d90bc5a
 	}
 	lead.Value = float64(float)
 
 	// Update values
 	_, err = config.DB.Exec("UPDATE leads SET status=$2, contact=$3, sales=$4, value=$5 WHERE id=$1", lead.ID, lead.Status, lead.Contact, lead.Sales, lead.Value)
 	if err != nil {
+		fmt.Println(err)
 		return lead, err
 	}
 	return lead, nil

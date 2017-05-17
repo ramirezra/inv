@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto:900i" rel="stylesheet">
+
+  <link rel="stylesheet" href="views/css/ramirez-reset.css">
+  <!-- <link rel="stylesheet" href="views/css/foundation.css"> -->
+  <link rel="stylesheet" href="views/css/main.css">
+  <link rel="stylesheet" href="views/css/mq-600-plus.css" media="(min-width: 600px)">
+
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <div class="logo-top">
+          <h1 class="logo-CAM">CAM</h1>
+          <h1 class="logo-CAM">RPC</h1>
+        </div>
+        <div class="logo-bottom">
+          <h1 class="logo-ELEC">ELECTRONICS</h1>
+        </div>
+
+    </div>
+
+
+  </header>
+<main>
+  <nav class="menu">
+    <ul>
+      <li><a href="/leads">Leads</a></li>
+      <li><a href="/orders">Quotes/Sales Orders</a></li>
+      <li><a href="/purchases">Purchasing</a></li>
+      <li><a href="/production">Production Work Orders</a></li>
+    </ul>
+  </nav>
+  <div>
+    <div class="dashboard">
+    </div>
+    <div class="form-group">
+      <form action="/leads/update/process" method="post">
+        <input type="text" name="id" placeholder="id" required autofocus value="{{.ID}}">
+        <input type="text" name="status" placeholder="status" required value="{{.Status}}">
+        <input type="text" name="contact" placeholder="contact" required value="{{.Contact}}">
+        <input type="text" name="sales" placeholder="sales" required value="{{.Sales}}">
+        <input type="text" name="value" placeholder="value" required value="{{.Value}}">
+        <input class="button" type="submit">
+      </form>
+    </div>
+  </div>
+</main>
+</body>
+</html>
